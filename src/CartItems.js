@@ -3,18 +3,40 @@ import React from 'react';
 class CartItems extends React.Component {
    
     constructor(){
-         // you need to call super constructor because t extends component class abd its constructor needs calling
+         // you need to call super constructor because react extends component class abd its constructor needs calling
         super();
         this.state = {
             price: 999,
             title: 'Phone',
-            qantity: 1,
+            qantity: 0,
             img: '',
         }
         //this.increaseQuantity = this.increaseQuantity.bind(this);
     }
     increaseQuantity = ()=>{
-        console.log('this.state', this.state);
+        //this.state.qantity++;
+        //console.log('this.state.quantity', this.state.qantity);
+        this.setState({
+            quantity: this.state.qantity++
+        });
+
+    }
+    decreaseQuantity = ()=>{
+        //this.state.qantity--;
+        // console.log('this.state.quantity', this.state.qantity);
+        // this.setState({
+        //     quantity: this.state.qantity--
+        // });
+        //method1 in increase method2 in this function
+        //only decrease when this state quantity >0
+        if(this.state.qantity>0){
+            this.setState((prevState)=>{
+                return {
+                    quantity: prevState.qantity--
+                }
+            });
+        }
+        
     }
     
     render(){
@@ -40,6 +62,7 @@ class CartItems extends React.Component {
                         alt="decrease" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/svg/659/659892.svg"
+                        onClick={this.decreaseQuantity}
                         />
                         <img 
                         alt="delete" 
