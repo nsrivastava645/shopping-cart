@@ -8,25 +8,42 @@ class CartItems extends React.Component {
         this.state = {
             price: 999,
             title: 'Phone',
-            qantity: 0,
+            quantity: 0,
             img: '',
         }
         //this.increaseQuantity = this.increaseQuantity.bind(this);
+        // this.testing();
     }
+       //testing function to check react batching
+    //    testing() {
+    //     const promise = new Promise((resolve, reject)=>{
+    //         setTimeout(()=>{
+    //             resolve('done');
+    //         },5000);
+    //     })
+
+    //     promise.then(()=>{
+    //         this.setState({
+    //             quantity: this.state.quantity+10,
+    //         });
+    //         this.setState({
+    //             quantity: this.state.quantity+10,
+    //         });
+    //         this.setState({
+    //             quantity: this.state.quantity+10,
+    //         });
+    //         console.log('state',this.state);
+    //     })
+    // }
     increaseQuantity = ()=>{
         //this.state.qantity++;
         //console.log('this.state.quantity', this.state.qantity);
         this.setState({
-            quantity: this.state.qantity++
+            quantity: this.state.quantity++
         });
 
     }
     decreaseQuantity = ()=>{
-        //this.state.qantity--;
-        // console.log('this.state.quantity', this.state.qantity);
-        // this.setState({
-        //     quantity: this.state.qantity--
-        // });
         //method1 in increase method2 in this function
         //only decrease when this state quantity >0
         if(this.state.qantity>0){
@@ -36,11 +53,14 @@ class CartItems extends React.Component {
                 }
             });
         }
+
         
     }
     
+ 
+
     render(){
-        const {price, title, qantity} = this.state;
+        const {price, title, quantity} = this.state;
         return (
             <div className="cart-item">
                 <div className="left-block">
@@ -49,7 +69,7 @@ class CartItems extends React.Component {
                 <div className="right-block">
                     <div style={{ fontSize: 25}}>{title}</div>
                     <div style={{ color: 'lightgrey'}}>Rs: {price}</div>
-                    <div style={{ color: 'lightgrey'}}>Quantity: {qantity}</div>
+                    <div style={{ color: 'lightgrey'}}>Quantity: {quantity}</div>
                     <div className="cart-items-actions">
                         {/* Action buttons */}
                         <img 
