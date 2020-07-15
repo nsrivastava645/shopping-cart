@@ -11,7 +11,7 @@ class CartItems extends React.Component {
             quantity: 0,
             img: '',
         }
-        //this.increaseQuantity = this.increaseQuantity.bind(this);
+        this.increaseQuantity = this.increaseQuantity.bind(this);
         // this.testing();
     }
        //testing function to check react batching
