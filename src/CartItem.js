@@ -8,7 +8,7 @@ class CartItem extends React.Component {
         this.state = {
             price: 999,
             title: 'Mobile Phone',
-            quantity: 0,
+            quantity: 1,
             img: '',
         }
     }
@@ -23,12 +23,13 @@ class CartItem extends React.Component {
 
     }
     decreaseQuantity = ()=>{
-        // console.log('Decrease Quantity presses');
+        //dont decrease below 0
+        let {quantity}= this.state;
+        if(quantity===0){
+            return;
+        }
         // setState function metod 2
         this.setState((prevState)=>{
-            if(prevState.quantity === 0){
-                return;
-            }
             return {
                 quantity : prevState.quantity-1,
             }
