@@ -38,6 +38,43 @@ class CART extends React.Component {
             ]
         }
     }
+    increaseQuantityHandler = (product) =>{
+        // console.log('Increase Handler Called', product);
+        let {products} = this.state;
+        let indexOfThatProduct = products.indexOf(product);
+
+        products[indexOfThatProduct].quantity += 1;
+        //now render that again
+        this.setState({
+            products: products
+        })
+    }
+    decreaseQuantityHandler = (product) =>{
+        // console.log('Decrease button pressed for', product)
+        let {products} = this.state;
+        let indexOfThatProduct = products.indexOf(product);
+
+        // decrease the state
+        if(products[indexOfThatProduct].quantity===0){
+            return;
+        }else{
+            products[indexOfThatProduct].quantity -=1;
+            this.setState({
+                products : products
+            })
+        }
+        
+    }
+    deleteProductHandler = (id)=>{
+        let {products}  = this.state;
+        //filter the product with that given id
+        
+        let itemsToRetain = products.filter((product)=> product.id!==id)
+
+        this.setState({
+            products: itemsToRetain
+        })
+    }
       render() {
         const {products} = this.state;
         return (
@@ -46,10 +83,14 @@ class CART extends React.Component {
                 {products.map((product) => {
                     //in cartitem grab this using props.product
                     //product id is just for internal react to differentiate between all the cartItems
+                    //pass the increase and decrease handlers as well
                     return (
                     <CartItem 
                         product = {product} 
                         key={product.id} 
+                        onIncreaseButton = {this.increaseQuantityHandler}
+                        onDecreaseButton = {this.decreaseQuantityHandler}
+                        onDeleteButton = {this.deleteProductHandler}
                     />
                     );
                 })}
