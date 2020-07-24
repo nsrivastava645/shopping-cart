@@ -1,10 +1,11 @@
 import React from 'react';
-import CartItems from './CartItems';
+import CartItem from './CartItem';
 
 function App() {
   return (
-    <div className="App">
-      <CartItems/>
+    <div className="App" style={{textAlign : 'center'}}>
+      <h1>Shopping cart</h1>
+      <CartItem />
 
     </div>
   );

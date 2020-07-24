@@ -1,60 +1,38 @@
 import React from 'react';
 
-class CartItems extends React.Component {
+class CartItem extends React.Component {
    
     constructor(){
-         // you need to call super constructor because react extends component class abd its constructor needs calling
+         // you need to call super constructor because react extends component class and its constructor needs calling
         super();
         this.state = {
             price: 999,
-            title: 'Phone',
+            title: 'Mobile Phone',
             quantity: 0,
             img: '',
         }
-        this.increaseQuantity = this.increaseQuantity.bind(this);
-        // this.testing();
     }
-       //testing function to check react batching
-    //    testing() {
-    //     const promise = new Promise((resolve, reject)=>{
-    //         setTimeout(()=>{
-    //             resolve('done');
-    //         },5000);
-    //     })
-
-    //     promise.then(()=>{
-    //         this.setState({
-    //             quantity: this.state.quantity+10,
-    //         });
-    //         this.setState({
-    //             quantity: this.state.quantity+10,
-    //         });
-    //         this.setState({
-    //             quantity: this.state.quantity+10,
-    //         });
-    //         console.log('state',this.state);
-    //     })
-    // }
+   
     increaseQuantity = ()=>{
-        //this.state.qantity++;
-        //console.log('this.state.quantity', this.state.qantity);
+        // this.state.quantity++;  but direct mutatio wont re rerender your app so use setState;
         this.setState({
-            quantity: this.state.quantity++
-        });
+            quantity: this.state.quantity+1
+        })
+        // console.log('Increase Quantity pressed, current state :', this.state );
+        
 
     }
     decreaseQuantity = ()=>{
-        //method1 in increase method2 in this function
-        //only decrease when this state quantity >0
-        if(this.state.qantity>0){
-            this.setState((prevState)=>{
-                return {
-                    quantity: prevState.qantity--
-                }
-            });
-        }
-
-        
+        // console.log('Decrease Quantity presses');
+        // setState function metod 2
+        this.setState((prevState)=>{
+            if(prevState.quantity === 0){
+                return;
+            }
+            return {
+                quantity : prevState.quantity-1,
+            }
+        })
     }
     
  
@@ -64,7 +42,7 @@ class CartItems extends React.Component {
         return (
             <div className="cart-item">
                 <div className="left-block">
-                    <img style={styles.image}/>
+                    <img alt="" style={styles.image}/>
                 </div>
                 <div className="right-block">
                     <div style={{ fontSize: 25}}>{title}</div>
@@ -76,7 +54,7 @@ class CartItems extends React.Component {
                         alt="increase" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/svg/992/992651.svg"
-                        onClick={this.increaseQuantity}
+                        onClick = {this.increaseQuantity}
                         />
                         <img 
                         alt="decrease" 
@@ -111,4 +89,4 @@ const styles = {
         backgroundColor: 'grey'
     }
 }
-export default CartItems;
+export default CartItem;
