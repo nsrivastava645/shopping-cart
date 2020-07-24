@@ -3,7 +3,7 @@ import CART from './Cart';
 
 function App() {
   return (
-    <div className="App" style={{textAlign : 'center'}}>
+    <div className="App">
       <CART />
     </div>
   );

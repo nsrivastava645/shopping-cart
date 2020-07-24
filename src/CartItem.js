@@ -2,16 +2,6 @@ import React from 'react';
 
 class CartItem extends React.Component {
    
-    constructor(){
-         // you need to call super constructor because react extends component class and its constructor needs calling
-        super();
-        this.state = {
-            price: 999,
-            title: 'Mobile Phone',
-            quantity: 1,
-            img: '',
-        }
-    }
    
     increaseQuantity = ()=>{
         // this.state.quantity++;  but direct mutatio wont re rerender your app so use setState;
@@ -39,8 +29,9 @@ class CartItem extends React.Component {
  
 
     render(){
-        
-        const {price, title, quantity} = this.state;
+        console.log(this.props);
+        //as we don't have these properties in props but in the product prop passed by the cart element we can use that
+        const {price, title, quantity} = this.props.product;
         return (
             
             <div className="cart-item">
