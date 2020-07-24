@@ -9,98 +9,33 @@ import CartItem from './CartItem';
 // )}
 // this can be grabbed in the NameOfItemToRender file as const{prop1, prop2, ....} = this.props and use themm directly
 // 
-class CART extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            products: [
-                {
-                    title: 'Commodity1 Name',
-                    price: 9991,
-                    quantity: 1,
-                    img: '',
-                    id: 1
-                },
-                {
-                    title: 'Commodity2 Name',
-                    price: 9992,
-                    quantity: 1,
-                    img: '',
-                    id: 2,
-                },
-                {
-                    title: 'Commodity3 Name',
-                    price: 9993,
-                    quantity: 1,
-                    img: '',
-                    id: 3
-                }
-            ]
-        }
-    }
-    increaseQuantityHandler = (product) =>{
-        // console.log('Increase Handler Called', product);
-        let {products} = this.state;
-        let indexOfThatProduct = products.indexOf(product);
+const Cart = (props) => {
+    
 
-        products[indexOfThatProduct].quantity += 1;
-        //now render that again
-        this.setState({
-            products: products
-        })
-    }
-    decreaseQuantityHandler = (product) =>{
-        // console.log('Decrease button pressed for', product)
-        let {products} = this.state;
-        let indexOfThatProduct = products.indexOf(product);
-
-        // decrease the state
-        if(products[indexOfThatProduct].quantity===0){
-            return;
-        }else{
-            products[indexOfThatProduct].quantity -=1;
-            this.setState({
-                products : products
-            })
-        }
+    const {products} = props;
+    return (
+        <div className="cart"> 
         
-    }
-    deleteProductHandler = (id)=>{
-        let {products}  = this.state;
-        //filter the product with that given id
-        
-        let itemsToRetain = products.filter((product)=> product.id!==id)
-
-        this.setState({
-            products: itemsToRetain
-        })
-    }
-      render() {
-        const {products} = this.state;
-        return (
-            <div className="cart"> 
-            
-                {products.map((product) => {
-                    //in cartitem grab this using props.product
-                    //product id is just for internal react to differentiate between all the cartItems
-                    //pass the increase and decrease handlers as well
-                    return (
-                    <CartItem 
-                        product = {product} 
-                        key={product.id} 
-                        onIncreaseButton = {this.increaseQuantityHandler}
-                        onDecreaseButton = {this.decreaseQuantityHandler}
-                        onDeleteButton = {this.deleteProductHandler}
-                    />
-                    );
-                })}
-            </div>
-            );
-    }
-
+            {products.map((product) => {
+                //in cartitem grab this using props.product
+                //product id is just for internal react to differentiate between all the cartItems
+                //pass the increase and decrease handlers as well
+                return (
+                <CartItem 
+                    product = {product} 
+                    key={product.id} 
+                    onIncreaseButton = {props.onIncreaseButton}
+                    onDecreaseButton = {props.onDecreaseButton}
+                    onDeleteButton = {props.onDeleteButton}
+                />
+                );
+            })}
+        </div>
+        );
 }
 
 
 
 
-export default CART;
+
+export default Cart;

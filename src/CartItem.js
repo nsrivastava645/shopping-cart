@@ -1,16 +1,14 @@
 import React from 'react';
 
-class CartItem extends React.Component {
-     render(){
-        // console.log(this.props);
-        //as we don't have these properties in props but in the product prop passed by the cart element we can use that
-        const{ product , onIncreaseButton, onDecreaseButton, onDeleteButton} = this.props;
-        const { title, quantity, price, id} = product;
+const CartItem = (props)=>{
+     
+    const{ product , onIncreaseButton, onDecreaseButton, onDeleteButton} = props;
+    const { title, quantity, price, id, img} = product;
         return (
             
             <div className="cart-item">
                 <div className="left-block">
-                    <img alt="" style={styles.image}/>
+                    <img src={img} alt="" style={styles.image}/>
                 </div>
                 <div className="right-block">
                     <div style={{ fontSize: 25}}>{title}</div>
@@ -44,8 +42,6 @@ class CartItem extends React.Component {
 
         );
     }
-
-}
 
 
 
