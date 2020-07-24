@@ -39,8 +39,10 @@ class CartItem extends React.Component {
  
 
     render(){
+        
         const {price, title, quantity} = this.state;
         return (
+            
             <div className="cart-item">
                 <div className="left-block">
                     <img alt="" style={styles.image}/>
