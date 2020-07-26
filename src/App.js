@@ -44,6 +44,7 @@ componentDidMount() {
         
               snapshot.docs.map((doc)=>{
                 console.log(doc.data());
+                return "";
               });
         
               const products = snapshot.docs.map((doc)=>{
@@ -105,14 +106,6 @@ decreaseQuantityHandler = (product) =>{
     
 }
 deleteProductHandler = (id)=>{
-    let {products}  = this.state;
-    //filter the product with that given id
-    
-    // let itemsToRetain = products.filter((product)=> product.id!==id)
-  
-    //   this.setState({
-  //     products: itemsToRetain
-  // })
 
     let docRef = this.db.collection('products').doc(id);
     docRef
@@ -170,7 +163,7 @@ addProduct = () => {
           onDecreaseButton = {this.decreaseQuantityHandler}
           onDeleteButton = {this.deleteProductHandler}
         />
-        {loading && <h1>Loading your cart items....</h1>}
+        {loading && <h3>Loading your cart items....</h3>}
         <div style={{fontSize: 20, padding: 10}}>TOTAL: {this.getCartTotal()}</div>
       </div>
     );
