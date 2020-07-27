@@ -155,8 +155,10 @@ addProduct = () => {
     const {products, loading} = this.state;
     return (
       <div className="App">
+        
         <Navbar count={this.getCartCount()}/>
         {/* <button onClick={this.addProduct} style={{padding: 20, fontSize:20}}>Add a product</button> */}
+        <h3 style={{textAlign: "center"}}>Shopping Cart </h3>
         <Cart 
           products = {products}
           onIncreaseButton = {this.increaseQuantityHandler}
